@@ -4,16 +4,24 @@ import io.javalin.Javalin;
 
 public class App {
 
-    public static Javalin getApp() {
+    private static Javalin getApp() {
         Javalin app = Javalin.create(config -> config.enableDevLogging());
         app.before(ctx -> ctx.attribute("ctx", ctx));
         return app;
     }
 
+    private static int getPort() {
+        final int portDefault = 5000;
+        String port = System.getenv("PORT");
+        if (port != null) {
+            return Integer.parseInt(port);
+        }
+        return portDefault;
+    }
+
     public static void main(String[] args) {
-        final int port = 5000;
         Javalin app = getApp();
-        app.start(port);
+        app.start(getPort());
         app.get("/", ctx -> ctx.result("Hello World"));
     }
 
