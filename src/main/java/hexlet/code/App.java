@@ -11,7 +11,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        final int port = 5050;
+        final int port = 5000;
         Javalin app = getApp();
         app.start(port);
         app.get("/", ctx -> ctx.result("Hello World"));
