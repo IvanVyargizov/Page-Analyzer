@@ -1,10 +1,9 @@
-package hexlet.code;
+package hexlet.code.domain;
 
 import io.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import io.ebean.annotation.WhenCreated;
 import java.time.Instant;
@@ -19,9 +18,6 @@ public final class Url extends Model {
     private Instant createdAt;
 
     private String name;
-
-    @OneToMany
-    private List<UrlCheck> urlChecks;
 
     public Url() {
     }
@@ -40,10 +36,6 @@ public final class Url extends Model {
 
     public Instant getCreatedAt() {
         return this.createdAt;
-    }
-
-    public List<UrlCheck> getUrlChecks() {
-        return urlChecks;
     }
 
 }
