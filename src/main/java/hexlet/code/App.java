@@ -56,13 +56,13 @@ public class App {
                 post(UrlController.createUrl);
                 path("{id}", () -> {
                     get(UrlController.showUrl);
-//                    post("/checks", UrlController.checkUrl);
+                    post("/checks", UrlController.checkUrl);
                 });
             });
         });
     }
 
-    private static Javalin getApp() {
+    public static Javalin getApp() {
         // Create an application
         Javalin app = Javalin.create(config -> {
             if (!isProduction()) {
