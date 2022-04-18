@@ -4,9 +4,9 @@ create table url_check (
   status_code                   integer not null,
   title                         varchar(255),
   h1                            varchar(255),
-  description                   clob,
+  description                   text,
   url_id                        bigint,
-  created_at                    timestamp not null,
+  created_at                    timestamptz not null,
   constraint pk_url_check primary key (id)
 );
 
