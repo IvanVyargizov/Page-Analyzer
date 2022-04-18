@@ -9,23 +9,26 @@ clean:
 build:
 	./gradlew clean build
 
+start:
+	APP_ENV=development ./gradlew run
+
 install:
-	./gradlew clean install
+	./gradlew install
 
-run-dist:
-	./build/install/app/bin/app
+start-dist:
+	APP_ENV=production .build/install/app/bin/app
 
-run:
-	./gradlew run
+generate-migrations:
+	./gradlew generateMigrations
+
+lint:
+	./gradlew checkstyleMain checkstyleTest
 
 test:
 	./gradlew test
 
 report:
 	./gradlew jacocoTestReport
-
-lint:
-	./gradlew checkstyleMain checkstyleTest
 
 check-updates:
 	./gradlew dependencyUpdates
