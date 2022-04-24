@@ -21,8 +21,8 @@ start-dist:
 generate-migrations:
 	./gradlew generateMigrations
 
-lint:
-	./gradlew checkstyleMain checkstyleTest
+# lint:
+# 	./gradlew checkstyleMain checkstyleTest
 
 test:
 	./gradlew test
