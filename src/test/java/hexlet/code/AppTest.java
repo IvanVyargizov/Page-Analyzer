@@ -35,16 +35,6 @@ class AppTest {
     private static Url existingUrl;
     private static MockWebServer mockWebServer;
 
-    @BeforeEach
-    void beforeEach() {
-        transaction = DB.beginTransaction();
-    }
-
-    @AfterEach
-    void afterEach() {
-        transaction.rollback();
-    }
-
     @BeforeAll
     public static void beforeAll() throws IOException {
         app = App.getApp();
@@ -63,12 +53,10 @@ class AppTest {
         mockWebServer.start();
     }
 
-    @AfterAll
-    public static void afterAll() throws IOException {
-        app.stop();
-        mockWebServer.shutdown();
+    @BeforeEach
+    void beforeEach() {
+        transaction = DB.beginTransaction();
     }
-
 
     @Test
     void testIndex() {
@@ -186,4 +174,16 @@ class AppTest {
         assertThat(body).contains(mockH1);
         assertThat(body).contains(mockTitle);
     }
+
+    @AfterEach
+    void afterEach() {
+        transaction.rollback();
+    }
+
+    @AfterAll
+    public static void afterAll() throws IOException {
+        app.stop();
+        mockWebServer.shutdown();
+    }
+
 }
