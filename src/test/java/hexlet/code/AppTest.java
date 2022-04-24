@@ -41,7 +41,7 @@ class AppTest {
         app.start(0);
         int port = app.port();
         baseUrl = "http://localhost:" + port;
-        existingUrl = new Url("https://github.com");
+        existingUrl = new Url("https://hexlet.io");
         existingUrl.save();
 
         mockWebServer = new MockWebServer();
@@ -143,9 +143,9 @@ class AppTest {
     }
     @Test
     void testCheckUrl() {
-        String mockDescription = "GitHub is where over 73 million";
-        String mockTitle = "GitHub: Where the";
-        String mockH1 = "Where the world";
+        String mockDescription = "Живое онлайн сообщество программистов";
+        String mockTitle = "Хекслет — больше чем школа";
+        String mockH1 = "Онлайн-школа программирования";
 
         String mockUrl = mockWebServer.url("/").toString();
 
