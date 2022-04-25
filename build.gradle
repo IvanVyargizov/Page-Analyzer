@@ -1,7 +1,7 @@
 plugins {
     id 'application'
     id 'jacoco'
-//    id 'checkstyle'
+    id 'checkstyle'
     id 'io.ebean' version '13.4.0'
     id 'com.github.ben-manes.versions' version '0.42.0'
     id 'com.adarshr.test-logger' version '3.2.0'
@@ -89,3 +89,8 @@ sourceSets {
         }
     }
 }
+
+checkstyleMain {
+    source ='src/main/java'
+}
+
