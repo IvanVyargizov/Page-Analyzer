@@ -43,7 +43,6 @@ public class UrlController {
 
 
         ctx.attribute("urls", urls);
-//        ctx.attribute("page", page);
         ctx.attribute("pages", pages);
         ctx.attribute("currentPage", currentPage);
         ctx.render("urls/index.html");
@@ -69,9 +68,9 @@ public class UrlController {
 
         if (urlSearch != null) {
             ctx.sessionAttribute("flash", "Страница уже существует");
-            ctx.sessionAttribute("flash-type", "danger");
+            ctx.sessionAttribute("flash-type", "success");
             ctx.attribute("url", srtUrl);
-            ctx.redirect("/");
+            ctx.redirect("/urls/" + urlSearch.getId());
             return;
         }
         Url newUrl = new Url(normalStrUrl);
@@ -99,7 +98,6 @@ public class UrlController {
                 .findList();
 
         ctx.attribute("urlChecks", urlChecks);
-
         ctx.attribute("url", url);
         ctx.render("urls/show.html");
     };

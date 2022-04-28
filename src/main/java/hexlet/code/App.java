@@ -50,16 +50,14 @@ public class App {
         app.get("/", RootController.welcome);
 
         // For a GET POST request to a route 'urls' and 'id' will be executed handlers in the UrlController
-        app.routes(() -> {
-            path("urls", () -> {
-                get(UrlController.listUrls);
-                post(UrlController.createUrl);
-                path("{id}", () -> {
-                    get(UrlController.showUrl);
-                    post("/checks", UrlController.checkUrl);
-                });
+        app.routes(() -> path("urls", () -> {
+            get(UrlController.listUrls);
+            post(UrlController.createUrl);
+            path("{id}", () -> {
+                get(UrlController.showUrl);
+                post("/checks", UrlController.checkUrl);
             });
-        });
+        }));
     }
 
     public static Javalin getApp() {
