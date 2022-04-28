@@ -6,6 +6,7 @@
 [Page Analyzer](https://java-project-lvl4-vyargizov.herokuapp.com/) is a website that analyzes the specified pages for SEO suitability.
 
 ###Features
+
 - MVC-architecture
 - Javalin
 - Bootstrap
