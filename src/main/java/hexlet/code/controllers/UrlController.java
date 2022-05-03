@@ -107,6 +107,25 @@ public class UrlController {
                 : url.getProtocol() + "://" + url.getHost() + ":" + url.getPort();
     }
 
+    private static UrlCheck getUrlCheck(HttpResponse<String> response, Url url) {
+        int statusCode = response.getStatus();
+        Document body = Jsoup.parse(response.getBody());
+        String title = body.title();
+        String description = null;
+
+        if (body.selectFirst("meta[name=description]") != null) {
+            description = body.selectFirst("meta[name=description]").attr("content");
+        }
+
+        String h1 = null;
+
+        if (body.selectFirst("h1") != null) {
+            h1 = body.selectFirst("h1").text();
+        }
+
+        return new UrlCheck(statusCode, title, h1, description, url);
+    }
+
     public static Handler checkUrl = ctx -> {
         long id = ctx.pathParamAsClass("id", Long.class).getOrDefault(null);
 
@@ -114,31 +133,9 @@ public class UrlController {
                 .id.equalTo(id)
                 .findOne();
 
-        HttpResponse<String> response;
-
         try {
-            response = Unirest.get(url.getName()).asString();
-
-            int statusCode = response.getStatus();
-
-            Document body = Jsoup.parse(response.getBody());
-
-            String title = body.title();
-
-            String description = null;
-
-            if (body.selectFirst("meta[name=description]") != null) {
-                description = body.selectFirst("meta[name=description]").attr("content");
-            }
-
-            String h1 = null;
-
-            if (body.selectFirst("h1") != null) {
-                h1 = body.selectFirst("h1").text();
-            }
-
-
-            UrlCheck urlCheck = new UrlCheck(statusCode, title, h1, description, url);
+            HttpResponse<String> response = Unirest.get(url.getName()).asString();
+            UrlCheck urlCheck = getUrlCheck(response, url);
             urlCheck.save();
 
             ctx.sessionAttribute("flash", "Страница успешно проверена");
