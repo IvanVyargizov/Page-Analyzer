@@ -3,11 +3,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/a28408b459e7dc6b0578/maintainability)](https://codeclimate.com/github/IvanVyargizov/java-project-lvl4/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a28408b459e7dc6b0578/test_coverage)](https://codeclimate.com/github/IvanVyargizov/java-project-lvl4/test_coverage)
 
-[Page Analyzer](https://java-project-lvl4-vyargizov.herokuapp.com/) is a website that analyzes the specified pages for SEO suitability.
+[Page Analyzer](https://page-analyzer-hqe9.onrender.com) is a website that analyzes the specified pages for SEO suitability.
 
 <h3>Features</h3>
 
 - MVC-architecture
 - Javalin
 - Bootstrap
-- Deploy on Heroku
+- Deploy on [Render](https://render.com/) database host is [ElephantSQL](https://www.elephantsql.com/)
